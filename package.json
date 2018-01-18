@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Observe when something in your node app starts listening on a TCP port",
   "main": "index.js",
+  "engines":
+  {
+    "node": ">=9.0.0"
+  },
   "dependencies": {},
   "devDependencies": {
     "standard": "^10.0.3",
