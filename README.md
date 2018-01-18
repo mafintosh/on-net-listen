@@ -43,6 +43,7 @@ To stop the listener do `emitter.destroy()`
 
 ## Acknowledgements
 
+Credit to [@andreasmadsen](https://github.com/andreasmadsen) for writing most of this module and being an async_hooks wizard
 This project was kindly sponsored by nearForm.
 
 ## License
