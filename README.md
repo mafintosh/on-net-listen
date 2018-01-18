@@ -6,6 +6,8 @@ Observe when something in your node app starts listening on a TCP port.
 npm install on-net-listen
 ```
 
+[![build status](https://travis-ci.org/mafintosh/on-net-listen.svg?branch=master)](https://travis-ci.org/mafintosh/on-net-listen)
+
 Uses `async_hooks` behind the scenes and requires Node >=9
 
 ## Usage
