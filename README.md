@@ -41,6 +41,10 @@ with the address object for the tcp server that started listening.
 
 To stop the listener do `emitter.destroy()`
 
+## Acknowledgements
+
+This project was kindly sponsored by nearForm.
+
 ## License
 
 MIT
