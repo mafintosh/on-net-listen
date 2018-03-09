@@ -1,5 +1,6 @@
 var hooks = require('async_hooks')
 var events = require('events')
+var cluster = require('cluster')
 
 module.exports = onListening
 
@@ -11,7 +12,8 @@ function onListening (onlistening) {
       if (type === 'PIPESERVERWRAP' || type === 'TCPSERVERWRAP') {
         process.nextTick(function () {
           resource.owner.once('listening', function () {
-            e.emit('listening', resource.owner.address())
+            var addr = resource.owner.address()
+            if (addr) e.emit('listening', addr)
           })
         })
       }
@@ -19,9 +21,19 @@ function onListening (onlistening) {
   })
 
   hook.enable()
-  e.destroy = () => hook.disable()
+  cluster.on('listening', oncluster)
+  e.destroy = destroy
 
   if (onlistening) e.on('listening', onlistening)
 
   return e
+
+  function destroy () {
+    hook.disable()
+    cluster.removeListener('listening', oncluster)
+  }
+
+  function oncluster (_, addr) {
+    e.emit('listening', addr)
+  }
 }
