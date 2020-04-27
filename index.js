@@ -11,6 +11,9 @@ function onListening (onlistening) {
     init (asyncId, type, triggerAsyncId, resource) {
       if (type === 'PIPESERVERWRAP' || type === 'TCPSERVERWRAP') {
         process.nextTick(function () {
+          if (Object.prototype.toString.call(resource) !== '[Object TCP]') {
+            return;
+          }
           resource.owner.once('listening', function () {
             var addr = resource.owner.address()
             if (addr) e.emit('listening', addr)
